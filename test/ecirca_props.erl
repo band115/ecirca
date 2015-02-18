@@ -18,12 +18,18 @@
 -export([initial_state/0, initial_state/4, command/1,
          precondition/2, postcondition/3, next_state/3]).
 
+-ifdef(namespaced_arrays).
+-type ecirca_array() :: array:array().
+-else.
+-type ecirca_array() :: array().
+-endif.
+
 -define(SERVER, ecirca).
 -define(TYPES, [last, max, min, avg, sum]).
 -define(VALUE_SIZES, [small, medium, large]).
 
 -record(state, {ecirca     = undefined       :: ecirca:ecirca() | undefined,
-                elements   = array:new()     :: array:array(),
+                elements   = array:new()     :: ecirca_array(),
                 size       = 0               :: pos_integer(),
                 value_size = medium          :: ecirca:ecirca_value_size(),
                 type       = last            :: ecirca:ecirca_type(),
