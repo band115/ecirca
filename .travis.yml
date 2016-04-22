@@ -1,4 +1,7 @@
 language: erlang
 otp_release:
+  - 18.3
+  - 18.1
+  - 17.4
   - 17.1
   - 17.0
